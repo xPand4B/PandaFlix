@@ -14,7 +14,12 @@ class CategoriesResource extends JsonResource
      */
     public function toArray($request)
     {
-        // TODO: Implement resource structure
-        return parent::toArray($request);
+        return [
+            'links' => [
+                'self' => route('category.show', ['category' => $this])
+            ],
+
+            'data' => new CategoryResource($this)
+        ];
     }
 }

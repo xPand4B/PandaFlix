@@ -14,7 +14,12 @@ class CollectionsResource extends JsonResource
      */
     public function toArray($request)
     {
-        // TODO: Implement resource structure
-        return parent::toArray($request);
+        return [
+            'links' => [
+                'self' => route('collection.show', ['collection' => $this])
+            ],
+
+            'data' => new CollectionResource($this)
+        ];
     }
 }
