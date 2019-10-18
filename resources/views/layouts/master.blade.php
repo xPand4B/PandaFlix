@@ -4,8 +4,7 @@
         @include('_partials.master.head')
     </head>
     <body>
-        @section('master.content')
-        @show
+        @yield('master.content')
 
         @include('_partials.master.javascript')
     </body>
