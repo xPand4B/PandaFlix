@@ -14,7 +14,20 @@ class SerieResource extends JsonResource
      */
     public function toArray($request)
     {
-        // TODO: Implement resource structure
-        return parent::toArray($request);
+        return [
+            'type' => 'serie',
+            'id' => (string)$this->id,
+
+            'attributes' => [
+                'title' => $this->title,
+                'description' => $this->description,
+                'cover_image' => $this->cover_image,
+                'path' => $this->path
+            ],
+
+            'relationships' => [
+                // TODO: Add relationships
+            ]
+        ];
     }
 }

@@ -14,7 +14,12 @@ class MoviesResource extends JsonResource
      */
     public function toArray($request)
     {
-        // TODO: Implement resource structure
-        return parent::toArray($request);
+        return [
+            'links' => [
+                'self' => route('movie.show', ['movie' => $this])
+            ],
+
+            'data' => new MovieResource($this)
+        ];
     }
 }
