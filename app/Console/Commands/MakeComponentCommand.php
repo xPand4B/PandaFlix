@@ -50,6 +50,7 @@ class MakeComponentCommand extends Command
             'component' => $componentName
         ]);
 
+        // TODO: Add custom resource maker command
 //        $this->call('make:resource', [
 //            'name' => $componentName.'Resource'
 //        ]);
