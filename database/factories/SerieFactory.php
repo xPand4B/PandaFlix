@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Serie;
+use App\PandaFlix\Models\Serie;
 use Faker\Generator as Faker;
 
 $factory->define(Serie::class, function (Faker $faker) {

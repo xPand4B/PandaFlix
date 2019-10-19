@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\PandaFlix\Contracts\RepositoryInterface;
+
+class DummyClass implements RepositoryInterface
+{
+    public static function all()
+    {
+        //
+    }
+
+    public static function findById(int $id)
+    {
+        //
+    }
+}
