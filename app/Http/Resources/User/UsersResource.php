@@ -14,7 +14,13 @@ class UsersResource extends JsonResource
      */
     public function toArray($request)
     {
-        // TODO: Implement resource structure
-        return parent::toArray($request);
+        return [
+            'links' => [
+                'self' => route('episode.show', ['episode' => $this])
+            ],
+
+            'data' => new UserResource($this)
+        ];
+
     }
 }
