@@ -10,6 +10,7 @@ on:
 
 jobs:
   laravel-tests:
+    name: Run Ubuntu
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
