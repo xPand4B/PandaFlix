@@ -1,4 +1,4 @@
-name: Laravel-Workflow-Test
+name: Laravel-Installation
 
 on: 
   pull_request:
