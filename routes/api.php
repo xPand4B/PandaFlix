@@ -1,5 +1,11 @@
 <?php
 
+use App\Components\Category\CategoryApiController;
+use App\Components\Collection\CollectionApiController;
+use App\Components\Episode\EpisodeApiController;
+use App\Components\Movie\MovieApiController;
+use App\Components\Serie\SerieApiController;
+use App\Components\User\UserApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,40 +19,40 @@ Route::prefix('v1')->group(function () {
     | Category Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('category', 'Category\CategoryApiController');
+    Route::apiResource('category', CategoryApiController::class);
 
     /*
     |--------------------------------------------------------------------------
     | Collection Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('collection', 'Collection\CollectionApiController');
+    Route::apiResource('collection', CollectionApiController::class);
 
     /*
     |--------------------------------------------------------------------------
     | Episode Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('episode', 'Episode\EpisodeApiController');
+    Route::apiResource('episode', EpisodeApiController::class);
 
     /*
     |--------------------------------------------------------------------------
     | Movie Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('movie', 'movie\MovieApiController');
+    Route::apiResource('movie', MovieApiController::class);
 
     /*
     |--------------------------------------------------------------------------
     | Serie Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('serie', 'Serie\SerieApiController');
+    Route::apiResource('serie', SerieApiController::class);
 
     /*
     |--------------------------------------------------------------------------
     | User Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('user', 'User\UserApiController');
+    Route::apiResource('user', UserApiController::class);
 });
