@@ -4,11 +4,7 @@
     "version": "1.0.0-dev",
     "description": "Another Netflix clone for in-home streaming.",
     "homepage": "https://github.com/xPand4B/PandaFlix",
-    "keywords": [
-        "in-home",
-        "streaming",
-        "laravel"
-    ],
+    "keywords": [ "in-home", "streaming", "laravel" ],
     "authors": [
         {
             "name": "Eric Heinzl",
@@ -54,7 +50,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": [
+                "app/PandaFlix/tests",
+                "app/Components/Category/tests/",
+                "app/Components/Collection/tests/",
+                "app/Components/Episode/tests/",
+                "app/Components/Meta/tests/",
+                "app/Components/Movie/tests/",
+                "app/Components/Serie/tests/",
+                "app/Components/User/tests/"
+            ]
         }
     },
     "minimum-stability": "dev",

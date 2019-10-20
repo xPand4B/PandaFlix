@@ -13,29 +13,40 @@ Route::prefix('v1')->group(function () {
     | Category Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('categories', 'Api\v1\CategoryController');
+    Route::apiResource('category', 'Category\CategoryApiController');
+
     /*
     |--------------------------------------------------------------------------
     | Collection Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('collections', 'Api\v1\CollectionController');
+    Route::apiResource('collection', 'Collection\CollectionApiController');
+
     /*
     |--------------------------------------------------------------------------
     | Episode Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('episodes', 'Api\v1\EpisodeController');
+    Route::apiResource('episode', 'Episode\EpisodeApiController');
+
     /*
     |--------------------------------------------------------------------------
     | Movie Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('movies', 'Api\v1\MovieController');
+    Route::apiResource('movie', 'movie\MovieApiController');
+
     /*
     |--------------------------------------------------------------------------
     | Serie Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('series', 'Api\v1\SerieController');
+    Route::apiResource('serie', 'Serie\SerieApiController');
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::apiResource('user', 'User\UserApiController');
 });
