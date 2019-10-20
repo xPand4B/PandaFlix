@@ -1,0 +1,14 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\PandaFlix\Tests\TestCase;
+
+class DummyClass extends TestCase
+{
+    /** @test */
+    public function sample_test()
+    {
+        self::assertTrue(false);
+    }
+}
