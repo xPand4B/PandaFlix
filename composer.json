@@ -44,21 +44,15 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "app/Components/Common/Database/factories",
+            "app/Components/Common/Database/seeds"
         ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": [
-                "app/PandaFlix/tests",
-                "app/Components/Category/tests/",
-                "app/Components/Collection/tests/",
-                "app/Components/Episode/tests/",
-                "app/Components/Meta/tests/",
-                "app/Components/Movie/tests/",
-                "app/Components/Serie/tests/",
-                "app/Components/User/tests/"
+                "app/Components/Common/tests",
+                "app/Components/User/tests"
             ]
         }
     },
