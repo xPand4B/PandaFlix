@@ -4,7 +4,7 @@
 /storage/*.key
 /vendor
 .env
-.env.backup
+.psh.yaml.override
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 .idea
 .editorconfig
+.DS_Store
