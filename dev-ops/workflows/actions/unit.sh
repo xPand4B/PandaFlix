@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # DESCRIPTION: Run workflow unit tests.
 
-php vendor/bin/phpunit
+INCLUDE: ./../../common/actions/.unit.sh
