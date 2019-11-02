@@ -21,5 +21,5 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit.
       env:
         DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+        DB_DATABASE: app/Components/Common/Database/database.sqlite
       run: ./psh.phar github:unit

@@ -6,8 +6,5 @@ use App\Components\Common\Tests\TestCase;
 
 class UserCollectionTest extends TestCase
 {
-    /** @test */
-    public function sampleTest() {
-        $this->assertTrue(false);
-    }
+    // TODO: Add test
 }

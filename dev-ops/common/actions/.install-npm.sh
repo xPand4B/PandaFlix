@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-npm install
+npm install --quiet --no-progress --ignore-scripts
