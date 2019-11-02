@@ -1,9 +1,10 @@
 # PandaFlix / Docs / Dev / Backend / Components
 
-- **Location**: _app/Components_
+- **Location**: _app/Components/*_
 
 ## Table of Content
 * [Structure](#structure)
+    * [Database](#database)
     * [Repositories](#repositories)
     * [Resources](#resources)
     * [Tests](#tests)
@@ -17,12 +18,15 @@ Everything that has to do with backend-code has it's own component.
 This is what a default component looks like.
 ```
 ├── YourComponent
+    ├── Database (communicate between model and controller)
+    |       Component.php
+    ├──────────────────────────────────────────────────────────
     ├── Repositories (communicate between model and controller)
     |       ComponentRepositories.php
     ├──────────────────────────────────────────────────────────
     ├── Resources (handles json responses)
-    |       ComponentResource.php
     |       ComponentCollection.php
+    |       ComponentResource.php
     ├──────────────────────────────────────────────────────────
     ├── tests (basic unit/feature tests)
     ├──── Feature
@@ -38,6 +42,9 @@ This is what a default component looks like.
 
 A new component can easily be created by running the command
 `php artisan make:component {ComponentName}`.
+
+### Database
+Here you will find stuff like the component model and anything other database related (except the repository).
 
 ### Repositories
 ### Why?!

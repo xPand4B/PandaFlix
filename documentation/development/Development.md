@@ -2,6 +2,6 @@
 
 ### Backend Documentation
 * [Components](backend/Components.md)
-* [PandaFlix Core](backend/Core.md)
+* [Core Stuff](backend/Core.md)
 
 ### Frontend Documentation
