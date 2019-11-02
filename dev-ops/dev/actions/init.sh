@@ -3,6 +3,7 @@
 
 INCLUDE: ./../../common/actions/.init.sh
 
+php artisan migrate:fresh
 php artisan db:seed
 
-npm run dev --quiet --no-progress
+

@@ -6,5 +6,4 @@ INCLUDE: ./.install-npm.sh
 INCLUDE: ./.cache.sh
 
 php artisan key:generate
-php artisan migrate:fresh
 php artisan storage:link
