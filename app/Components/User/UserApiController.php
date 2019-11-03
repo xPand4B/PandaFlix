@@ -2,10 +2,9 @@
 
 namespace App\Components\User;
 
-use App\Components\Common\Http\Controllers\Controller;
-use App\Components\User\Database\User;
-use App\Components\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use App\Components\Common\Http\Controllers\Controller;
+use App\Components\User\Repositories\UserRepository;
 
 class UserApiController extends Controller
 {
@@ -27,7 +26,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        $this->userRepository->paginate();
+        return $this->userRepository->paginate();
     }
 
     /**
