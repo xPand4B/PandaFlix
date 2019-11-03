@@ -1,5 +1,6 @@
 <?php
 
+use App\Components\User\Database\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // TODO: Add seeder
+        Eloquent::unguard();
+
+        $this->call([
+            UserSeeder::class
+        ]);
+
+        $usersCount  = User::all()->count();
+
+        $this->command->info("\nTotal:");
+        $this->command->info("=============");
+        $this->command->info("User : {$usersCount}\n");
+
+        Eloquent::reguard();
     }
 }
