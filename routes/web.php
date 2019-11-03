@@ -1,16 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use App\Components\Common\Helper\ComponentHelper;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+$api_routes = ComponentHelper::getWebRouteFiles();
 
-// TODO: Add application route
+foreach ($api_routes as $route_file) {
+    File::requireOnce($route_file);
+}

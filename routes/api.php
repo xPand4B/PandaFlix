@@ -1,54 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\File;
+use App\Components\Common\Helper\ComponentHelper;
 
-use App\Components\User\UserApiController;
-use Illuminate\Support\Facades\Route;
+$api_routes = ComponentHelper::getApiRouteFiles();
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - v1.0
-|--------------------------------------------------------------------------
-*/
-Route::prefix('v1')->group(function () {
-    /*
-    |--------------------------------------------------------------------------
-    | Category Routes
-    |--------------------------------------------------------------------------
-    */
-//    Route::apiResource('category', CategoryApiController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Collection Routes
-    |--------------------------------------------------------------------------
-    */
-//    Route::apiResource('collection', CollectionApiController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Episode Routes
-    |--------------------------------------------------------------------------
-    */
-//    Route::apiResource('episode', EpisodeApiController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Movie Routes
-    |--------------------------------------------------------------------------
-    */
-//    Route::apiResource('movie', MovieApiController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Serie Routes
-    |--------------------------------------------------------------------------
-    */
-//    Route::apiResource('serie', SerieApiController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Routes
-    |--------------------------------------------------------------------------
-    */
-    Route::apiResource('user', UserApiController::class);
-});
+foreach ($api_routes as $route_file) {
+    File::requireOnce($route_file);
+}
