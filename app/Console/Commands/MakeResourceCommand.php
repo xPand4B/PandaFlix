@@ -38,6 +38,22 @@ class MakeResourceCommand extends ResourceMakeCommand
             : __DIR__.'/stubs/resource.stub';
     }
 
+    protected function buildClass($name)
+    {
+        $replace = $this->replaceComponent();
+
+        return str_replace(
+            array_keys($replace), array_values($replace), parent::buildClass($name)
+        );
+    }
+
+    protected function replaceComponent()
+    {
+        return [
+            'DummyComponent' => $this->component
+        ];
+    }
+
     /**
      * Get the console command arguments.
      *

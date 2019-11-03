@@ -26,6 +26,13 @@ class User extends Authenticatable
     protected $perPage = 15;
 
     /**
+     * The number of entries if the database generates fake data.
+     *
+     * @var int
+     */
+    public static $seed_count = 25;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

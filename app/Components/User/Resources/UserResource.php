@@ -2,6 +2,7 @@
 
 namespace App\Components\User\Resources;
 
+use App\Components\Common\PandaFlix;
 use App\Components\User\Database\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -12,6 +13,8 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $this->with = PandaFlix::ResourceAdditions();
+
         return [
             'type' => User::class,
             'id' => (string)$this->id,
@@ -31,7 +34,7 @@ class UserResource extends JsonResource
 
             'links' => [
                 'self' => route('user.show', ['user' => $this->id]),
-                'related' => 'null'
+                'related' => null,
             ]
         ];
     }

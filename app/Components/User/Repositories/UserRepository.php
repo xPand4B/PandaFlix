@@ -11,38 +11,36 @@ class UserRepository implements RepositoryInterface
 {
     public function all()
     {
-        return 'test';
-        return UserCollection::collection(
+        return new UserCollection(
             User::all()
         );
     }
 
     public function paginate()
     {
-        return 'test';
-        return UserCollection::collection(
+        return new UserCollection(
             User::paginate()
         );
     }
 
-    public function getById(int $id)
+    public function getById($id)
     {
         return new UserResource(
             User::findOrFail($id)
         );
     }
 
-    public function update(int $id, array $data)
+    public function update($id, array $data)
     {
         //
     }
 
-    public function delete(int $id)
+    public function delete($id)
     {
         //
     }
 
-    public function deleteSoft(int $id)
+    public function deleteSoft($id)
     {
         //
     }

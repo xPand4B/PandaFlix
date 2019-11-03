@@ -3,19 +3,22 @@
 namespace App\Components\User\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Components\Common\PandaFlix;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class UserCollection extends JsonResource
+class UserCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
      *
      * @param Request $request
-     * @return UserResource
+     * @return AnonymousResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-        return new UserResource($this);
+        $this->with = PandaFlix::ResourceAdditions();
+
+        return UserResource::collection($this);
     }
 }
