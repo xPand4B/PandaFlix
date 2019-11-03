@@ -41,7 +41,7 @@ class UserApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
+    public function show($id)
     {
         return $this->userRepository->getById($id);
     }
@@ -49,7 +49,7 @@ class UserApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -57,7 +57,7 @@ class UserApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         //
     }

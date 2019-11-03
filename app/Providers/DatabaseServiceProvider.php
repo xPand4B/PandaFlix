@@ -11,6 +11,11 @@ class DatabaseServiceProvider extends ServiceProvider
     /**
      * @var string
      */
+    public $database_path = 'app/Components/Common/Database';
+
+    /**
+     * @var string
+     */
     public $factories_path = 'app/Components/Common/Database/factories';
 
     /**
@@ -38,6 +43,8 @@ class DatabaseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->databasePath(base_path($this->database_path));
+
         $this->loadMigrationsFrom(base_path($this->migrations_path));
     }
 }
