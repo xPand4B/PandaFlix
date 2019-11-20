@@ -83,6 +83,16 @@ class MakeComponentCommand extends Command
 
         /*
         |--------------------------------------------------------------------------
+        | Make default request
+        |--------------------------------------------------------------------------
+        */
+        $this->call('make:request', [
+            'name' => $componentName.'Request',
+            'component' => $componentName
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
         | Make default api route file
         |--------------------------------------------------------------------------
         */
@@ -106,6 +116,11 @@ class MakeComponentCommand extends Command
         */
         $this->call('make:test', [
             'name' => $componentName.'ApiControllerTest',
+            'component' => $componentName
+        ]);
+
+        $this->call('make:test', [
+            'name' => $componentName.'RequestTest',
             'component' => $componentName
         ]);
 
