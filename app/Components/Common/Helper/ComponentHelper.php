@@ -6,17 +6,33 @@ use Illuminate\Support\Facades\File;
 
 class ComponentHelper
 {
+    /**
+     * Get all api route files.
+     *
+     * @return array|null
+     */
     public static function getApiRouteFiles(): ?array
     {
         return self::getFilesByName('api.php');
     }
 
+    /**
+     * Get all web route files.
+     *
+     * @return array|null
+     */
     public static function getWebRouteFiles(): ?array
     {
         return self::getFilesByName('web.php');
     }
 
-    private static function getFilesByName(string $search): array
+    /**
+     * Returns all component files matching the search term.
+     *
+     * @param string $search
+     * @return array
+     */
+    public static function getFilesByName(string $search): array
     {
         $files = [];
 
@@ -32,6 +48,11 @@ class ComponentHelper
         return $files;
     }
 
+    /**
+     * Get all component directories except Common.
+     *
+     * @return array
+     */
     private static function getComponentDirectories(): array
     {
         $components = File::directories(app_path('Components'));

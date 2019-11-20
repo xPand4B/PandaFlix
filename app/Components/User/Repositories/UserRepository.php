@@ -32,17 +32,17 @@ class UserRepository implements RepositoryInterface
 
     public function update($id, array $data)
     {
-        //
+        // TODO: Add update method + validation
     }
 
     public function delete($id)
     {
-        //
+        // TODO: Add delete method + validation
     }
 
     public function deleteSoft($id)
     {
-        //
+        // TODO: Add soft delete method + validation
     }
 
 
