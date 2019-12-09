@@ -2,36 +2,50 @@
 
 namespace DummyNamespace;
 
+use App\Components\Dummy\Database\Dummy;
+use App\Components\Dummy\Resources\DummyResource;
+use App\Components\Dummy\Resources\DummyCollection;
 use App\Components\Common\Contracts\RepositoryInterface;
 
 class DummyClass implements RepositoryInterface
 {
     public function all()
     {
-        //
+        return new DummyCollection(
+            Dummy::all()
+        );
     }
 
-    public function paginate(int $pagination = 15)
+    public function paginate()
+    {
+        return new DummyCollection(
+            Dummy::paginate()
+        );
+    }
+
+    public function getById($id)
+    {
+        return new DummyResource(
+            Dummy::findOrFail($id)
+        );
+    }
+
+    public function create($id, array $data)
     {
         //
     }
 
-    public function getById(int $id)
+    public function update($id, array $data)
     {
         //
     }
 
-    public function update(int $id, array $data)
+    public function delete($id)
     {
         //
     }
 
-    public function delete(int $id)
-    {
-        //
-    }
-
-    public function deleteSoft(int $id)
+    public function deleteSoft($id)
     {
         //
     }

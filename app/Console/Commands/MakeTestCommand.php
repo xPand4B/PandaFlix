@@ -12,7 +12,9 @@ class MakeTestCommand extends TestMakeCommand
      *
      * @var string
      */
-    protected $signature = 'make:test {name : The name of the class} {component : The name of the component} {--unit : Create a unit test}';
+    protected $signature = 'make:test {name : The name of the class}
+                                      {component : The name of the component}
+                                      {--unit : Create a unit test}';
 
     /**
      * @var string
@@ -65,6 +67,16 @@ class MakeTestCommand extends TestMakeCommand
     }
 
     /**
+     * Build the class with the given name.
+     */
+    protected function buildClass($name)
+    {
+        return str_replace(
+            'Dummy', $this->component, parent::buildClass($name)
+        );
+    }
+
+    /**
      * Get the root namespace for the class.
      *
      * @return string
@@ -72,17 +84,5 @@ class MakeTestCommand extends TestMakeCommand
     protected function rootNamespace()
     {
         return 'App\Components';
-    }
-
-    /**
-     * Build the class with the given name.
-     *
-     * @param  string  $name
-     * @return string
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    protected function buildClass($name)
-    {
-        return parent::buildClass($name);
     }
 }

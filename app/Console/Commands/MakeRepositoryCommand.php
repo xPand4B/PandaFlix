@@ -69,7 +69,9 @@ class MakeRepositoryCommand extends GeneratorCommand
             'component' => $this->component
         ]);
 
-        return parent::buildClass($name);
+        return str_replace(
+            'Dummy', $this->component, parent::buildClass($name)
+        );
     }
 
     /**
@@ -79,9 +81,8 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function getArguments()
     {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        return array_merge(parent::getArguments(), [
             ['component', InputArgument::REQUIRED, 'The name of the component'],
-        ];
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Components\User;
 
+use App\Components\User\Database\User;
 use Illuminate\Http\Request;
 use App\Components\Common\Http\Controllers\Controller;
 use App\Components\User\Repositories\UserRepository;
@@ -15,6 +16,8 @@ class UserApiController extends Controller
 
     /**
      * UserApiController constructor.
+     *
+     * @param UserRepository $user
      */
     public function __construct(UserRepository $user)
     {
@@ -26,11 +29,17 @@ class UserApiController extends Controller
      */
     public function index()
     {
+        if (User::all()->count() == 0) {
+            factory(User::class, 30)->create();
+        }
+
         return $this->userRepository->paginate();
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
      */
     public function store(Request $request)
     {
@@ -39,6 +48,9 @@ class UserApiController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param $id
+     * @return Resources\UserResource
      */
     public function show($id)
     {
@@ -47,6 +59,9 @@ class UserApiController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param $id
      */
     public function update(Request $request, $id)
     {
@@ -55,6 +70,8 @@ class UserApiController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param $id
      */
     public function destroy($id)
     {

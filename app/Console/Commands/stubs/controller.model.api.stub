@@ -16,6 +16,8 @@ class DummyClass extends Controller
 
     /**
      * DummyClass constructor.
+     *
+     * @param DummyModelClassRepository $DummyModelVariable
      */
     public function __construct(DummyModelClassRepository $DummyModelVariable)
     {
@@ -32,6 +34,8 @@ class DummyClass extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
      */
     public function store(Request $request)
     {
@@ -40,6 +44,8 @@ class DummyClass extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param DummyModelClass $DummyModelVariable
      */
     public function show(DummyModelClass $DummyModelVariable)
     {
@@ -48,6 +54,9 @@ class DummyClass extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param DummyModelClass $DummyModelVariable
      */
     public function update(Request $request, DummyModelClass $DummyModelVariable)
     {
@@ -56,6 +65,8 @@ class DummyClass extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param DummyModelClass $DummyModelVariable
      */
     public function destroy(DummyModelClass $DummyModelVariable)
     {

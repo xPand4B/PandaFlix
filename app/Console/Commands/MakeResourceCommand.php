@@ -38,16 +38,24 @@ class MakeResourceCommand extends ResourceMakeCommand
             : __DIR__.'/stubs/resource.stub';
     }
 
+    /**
+     * Build the class with the given name.
+     */
     protected function buildClass($name)
     {
-        $replace = $this->replaceComponent();
+        $replace = $this->buildReplacements();
 
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
         );
     }
 
-    protected function replaceComponent()
+    /**
+     * Build the replacements for a controller.
+     *
+     * @return array
+     */
+    protected function buildReplacements()
     {
         return [
             'DummyComponent' => $this->component
@@ -61,9 +69,8 @@ class MakeResourceCommand extends ResourceMakeCommand
      */
     protected function getArguments()
     {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        return array_merge(parent::getArguments(), [
             ['component', InputArgument::REQUIRED, 'The name of the component'],
-        ];
+        ]);
     }
 }

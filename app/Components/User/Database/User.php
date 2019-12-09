@@ -12,13 +12,6 @@ class User extends Authenticatable
     use Notifiable, UsesUuid;
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
      * The number of models to return for pagination.
      *
      * @var int
@@ -38,7 +31,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname',
+        'lastname',
+        'username',
+        'email',
+        'birthday',
+        'avatar',
+        'password',
+        'api_token',
+        'remember_token',
+        'email_verified_at'
     ];
 
     /**

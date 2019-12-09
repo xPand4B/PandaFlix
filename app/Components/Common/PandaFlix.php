@@ -12,6 +12,11 @@ class PandaFlix
     public const VERSION = "1.0.0";
 
     /**
+     * @var string
+     */
+    public const COMPONENT_PATH = 'app/Components';
+
+    /**
      * Add data to resources.
      *
      * @return array

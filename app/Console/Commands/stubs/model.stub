@@ -2,10 +2,10 @@
 
 namespace DummyNamespace;
 
+use App\Components\Common\Concerns\PandaFlixModel;
 use App\Components\Common\Concerns\UsesUuid;
-use Illuminate\Database\Eloquent\Model;
 
-class DummyClass extends Model
+class DummyClass extends PandaFlixModel
 {
     use UsesUuid;
 
@@ -22,13 +22,6 @@ class DummyClass extends Model
      * @var int
      */
     protected $perPage;
-
-    /**
-     * The number of entries if the database generates fake data.
-     *
-     * @var int
-     */
-    public static $seed_count = 25;
 
     /**
      * The attributes that are mass assignable.

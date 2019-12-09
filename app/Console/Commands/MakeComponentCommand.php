@@ -120,14 +120,8 @@ class MakeComponentCommand extends Command
         ]);
 
         $this->call('make:test', [
-            'name' => $componentName.'RequestTest',
-            'component' => $componentName
-        ]);
-
-        $this->call('make:test', [
             'name' => $componentName.'RepositoryTest',
-            'component' => $componentName,
-            '--unit' => 'default'
+            'component' => $componentName
         ]);
 
         $this->call('make:test', [
@@ -137,10 +131,16 @@ class MakeComponentCommand extends Command
         ]);
 
         $this->call('make:test', [
-            'name' => $componentName.'ResourceTest',
+            'name' => $componentName.'RequestTest',
             'component' => $componentName,
             '--unit' => 'default'
         ]);
+
+//        $this->call('make:test', [
+//            'name' => $componentName.'ResourceTest',
+//            'component' => $componentName,
+//            '--unit' => 'default'
+//        ]);
 
         return;
     }

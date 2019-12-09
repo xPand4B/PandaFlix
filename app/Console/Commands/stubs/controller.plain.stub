@@ -15,6 +15,8 @@ class DummyClass extends Controller
 
     /**
      * DummyClass constructor.
+     *
+     * @param DummyModelClassRepository $DummyModelVariable
      */
     public function __construct(DummyModelClassRepository $DummyModelVariable)
     {

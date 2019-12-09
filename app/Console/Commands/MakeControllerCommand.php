@@ -108,25 +108,8 @@ class MakeControllerCommand extends ControllerMakeCommand
      */
     protected function getArguments()
     {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        return array_merge(parent::getArguments(),[
             ['component', InputArgument::REQUIRED, 'The name of the component'],
-        ];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate a resource controller for the given model.'],
-            ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],
-            ['invokable', 'i', InputOption::VALUE_NONE, 'Generate a single method, invokable controller class.'],
-            ['parent', 'p', InputOption::VALUE_OPTIONAL, 'Generate a nested resource controller class.'],
-            ['api', null, InputOption::VALUE_NONE, 'Exclude the create and edit methods from the controller.'],
-        ];
+        ]);
     }
 }

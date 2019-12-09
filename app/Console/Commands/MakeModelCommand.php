@@ -47,9 +47,8 @@ class MakeModelCommand extends ModelMakeCommand
      */
     protected function getArguments()
     {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        return array_merge(parent::getArguments(), [
             ['component', InputArgument::REQUIRED, 'The name of the component'],
-        ];
+        ]);
     }
 }

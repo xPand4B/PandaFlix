@@ -2,28 +2,15 @@
 
 namespace App\Components\Common\Helper;
 
+use App\Components\Common\PandaFlix;
 use Illuminate\Support\Facades\File;
 
 class ComponentHelper
 {
-    /**
-     * Get all api route files.
-     *
-     * @return array|null
-     */
-    public static function getApiRouteFiles(): ?array
-    {
-        return self::getFilesByName('api.php');
-    }
 
-    /**
-     * Get all web route files.
-     *
-     * @return array|null
-     */
-    public static function getWebRouteFiles(): ?array
+    public static function getCount(): int
     {
-        return self::getFilesByName('web.php');
+        return sizeof(self::getComponentDirectories());
     }
 
     /**
@@ -39,7 +26,7 @@ class ComponentHelper
         foreach (self::getComponentDirectories() as $component_directory) {
             $component_files = File::allFiles($component_directory);
             foreach ($component_files as $file) {
-                if ($search === $file->getFilename()) {
+                if (strpos($file->getFilename(), $search) !== false) {
                     array_push($files, $file->getPathname());
                 }
             }
@@ -55,7 +42,7 @@ class ComponentHelper
      */
     private static function getComponentDirectories(): array
     {
-        $components = File::directories(app_path('Components'));
+        $components = File::directories(base_path(PandaFlix::COMPONENT_PATH));
 
         foreach ($components as $key => $component) {
             if (strpos($component, 'Common')) {
