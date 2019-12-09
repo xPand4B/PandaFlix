@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\PandaFlix\Models\User::class,
+            'model' => App\Components\User\Database\User::class,
         ],
 
         // 'users' => [

@@ -2,9 +2,10 @@
 
 namespace App\Components\User;
 
-use App\Components\User\Repositories\UserRepository;
-use App\Http\Controllers\Controller;
+use App\Components\User\Database\User;
 use Illuminate\Http\Request;
+use App\Components\Common\Http\Controllers\Controller;
+use App\Components\User\Repositories\UserRepository;
 
 class UserApiController extends Controller
 {
@@ -25,19 +26,20 @@ class UserApiController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        if (User::all()->count() == 0) {
+            factory(User::class, 30)->create();
+        }
+
+        return $this->userRepository->paginate();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
     public function store(Request $request)
     {
@@ -47,20 +49,19 @@ class UserApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return Resources\UserResource
      */
     public function show($id)
     {
-        //
+        return $this->userRepository->getById($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
      */
     public function update(Request $request, $id)
     {
@@ -70,8 +71,7 @@ class UserApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
      */
     public function destroy($id)
     {

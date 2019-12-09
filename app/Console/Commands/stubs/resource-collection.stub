@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Components\Common\PandaFlix;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
+class DummyClass extends ResourceCollection
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param $request
+     * @return AnonymousResourceCollection
+     */
+    public function toArray($request)
+    {
+        $this->with = PandaFlix::ResourceAdditions();
+
+        return DummyComponentResource::collection($this);
+    }
+}

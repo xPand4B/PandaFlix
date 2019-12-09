@@ -19,7 +19,8 @@
         "akaunting/language": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "waavi/sanitizer": "~1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -27,7 +28,8 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.0",
+        "ext-json": "*"
     },
     "config": {
         "optimize-autoloader": true,
@@ -44,21 +46,15 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "app/Components/Common/Database/factories",
+            "app/Components/Common/Database/seeds"
         ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": [
-                "app/PandaFlix/tests",
-                "app/Components/Category/tests/",
-                "app/Components/Collection/tests/",
-                "app/Components/Episode/tests/",
-                "app/Components/Meta/tests/",
-                "app/Components/Movie/tests/",
-                "app/Components/Serie/tests/",
-                "app/Components/User/tests/"
+                "app/Components/Common/tests",
+                "app/Components/User/tests"
             ]
         }
     },
@@ -68,12 +64,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
         ]
     }
 }

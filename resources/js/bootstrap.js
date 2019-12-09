@@ -1,5 +1,19 @@
 window._ = require('lodash');
 
+const Swal = require('sweetalert2');
+
+// Sweetalert Stuff
+window.Swal = Swal.mixin({
+    //
+});
+
+window.Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+});
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
