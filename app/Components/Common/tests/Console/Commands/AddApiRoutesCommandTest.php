@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Components\Common\tests\Unit\Console\Commands;
+namespace App\Components\Common\tests\Console\Commands;
 
 use App\Components\Common\Helper\ComponentHelper;
-use App\Components\Common\tests\ComponentTestTrait;
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\TestCase;
+use App\Components\Common\Testing\Traits\ComponentTestTrait;
 
 /**
  * @group Common
@@ -14,7 +14,7 @@ class AddApiRoutesCommandTest extends TestCase
     use ComponentTestTrait;
 
     /** @test */
-    public function test_command_adds_component_if_not_exist()
+    public function test_command_makes_component_if_not_exist(): void
     {
         $countBefore = ComponentHelper::getCount();
         $this->addApiRoutes();
@@ -22,11 +22,11 @@ class AddApiRoutesCommandTest extends TestCase
         $countAfter = ComponentHelper::getCount();
         $this->deleteSampleComponent();
 
-        self::assertSame($countBefore + 1, $countAfter);
+        self::assertSame($countAfter, $countBefore + 1);
     }
 
     /** @test */
-    public function test_command_adds_api_route_file()
+    public function test_command_adds_api_route_file(): void
     {
         $countBefore = $this->countFilesByName('api.php');
         $this->addApiRoutes();
@@ -34,7 +34,7 @@ class AddApiRoutesCommandTest extends TestCase
         $countAfter = $this->countFilesByName('api.php');
         $this->deleteSampleComponent();
 
-        self::assertSame($countBefore + 1, $countAfter);
+        self::assertSame($countAfter, $countBefore + 1);
     }
 
     /**

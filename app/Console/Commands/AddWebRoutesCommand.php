@@ -56,6 +56,13 @@ class AddWebRoutesCommand extends GeneratorCommand
         return $rootNamespace.'\Components\\'.$this->component.'\\Routes';
     }
 
+    /**
+     * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     protected function buildClass($name)
     {
         $replace = $this->buildReplacements();

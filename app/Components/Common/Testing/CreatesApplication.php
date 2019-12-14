@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Common\tests;
+namespace App\Components\Common\Testing;
 
 use Illuminate\Contracts\Console\Kernel;
 

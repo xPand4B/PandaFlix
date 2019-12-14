@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Components\Common\tests\Feature\Helper;
+namespace App\Components\Common\tests\Helper;
 
 use App\Components\Common\Helper\ComponentHelper;
-use App\Components\Common\tests\ComponentTestTrait;
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\Traits\ComponentTestTrait;
+use App\Components\Common\Testing\TestCase;
 
 /**
  * @group Common
@@ -14,7 +14,7 @@ class ComponentHelperTest extends TestCase
     use ComponentTestTrait;
 
     /** @test */
-    public function test_helper_can_find_all_component_files()
+    public function test_helper_can_find_all_component_files(): void
     {
         $this->makeSampleComponent();
 
@@ -26,7 +26,7 @@ class ComponentHelperTest extends TestCase
     }
 
     /** @test */
-    public function test_helper_returns_null_if_component_not_exists()
+    public function test_helper_returns_null_if_component_not_exists(): void
     {
         $files = $this->getComponentFiles($this->sampleComponentName . 'Fake');
         $this->deleteSampleComponent();
@@ -35,7 +35,7 @@ class ComponentHelperTest extends TestCase
     }
 
     /** @test */
-    public function test_helper_can_count_components()
+    public function test_helper_can_count_components(): void
     {
         $countBefore = ComponentHelper::getCount();
         $this->makeSampleComponent();
@@ -47,7 +47,7 @@ class ComponentHelperTest extends TestCase
     }
 
     /** @test */
-    public function test_helper_can_get_all_route_files()
+    public function test_helper_can_get_all_route_files(): void
     {
         $this->makeSampleComponent();
 

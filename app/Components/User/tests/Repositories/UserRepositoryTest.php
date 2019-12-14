@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Components\User\tests\Unit;
+namespace App\Components\User\tests\Repositories;
 
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\TestCase;
+use App\Components\Common\Testing\Traits\UserTestCaseTrait;
 use App\Components\User\Database\User;
 use App\Components\User\Repositories\UserRepository;
-use App\Components\User\tests\UserTestCaseTrait;
 
 /**
  * @group User
@@ -15,7 +15,7 @@ class UserRepositoryTest extends TestCase
     use UserTestCaseTrait;
 
     /** @test */
-    public function test_repository_returns_all_users()
+    public function test_repository_returns_all_users(): void
     {
         $this->createUser(3);
 
@@ -23,7 +23,7 @@ class UserRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function test_repository_returns_all_user_paginated()
+    public function test_repository_returns_all_user_paginated(): void
     {
         // First run, 15 users
         $this->createUser(15);
@@ -37,7 +37,7 @@ class UserRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function test_repository_get_user_by_id()
+    public function test_repository_get_user_by_id(): void
     {
         $this->createUser(5);
 

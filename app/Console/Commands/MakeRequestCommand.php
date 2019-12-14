@@ -27,6 +27,23 @@ class MakeRequestCommand extends RequestMakeCommand
     }
 
     /**
+     * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    protected function buildClass($name)
+    {
+        $this->call('make:test', [
+            'name' => $this->argument('name').'Test',
+            'component' => $this->component
+        ]);
+
+        return parent::buildClass($name);
+    }
+
+    /**
      * Get the console command arguments.
      *
      * @return array

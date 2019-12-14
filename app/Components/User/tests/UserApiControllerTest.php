@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Components\User\tests\Feature;
+namespace App\Components\User\tests;
 
 use App\Components\Common\PandaFlix;
-use App\Components\Common\tests\TestCase;
-use App\Components\User\tests\UserTestCaseTrait;
+use App\Components\Common\Testing\TestCase;
+use App\Components\Common\Testing\Traits\UserTestCaseTrait;
 
 /**
  * @group User
@@ -14,7 +14,7 @@ class UserApiControllerTest extends TestCase
     use UserTestCaseTrait;
 
     /** @test */
-    public function test_all_user_can_be_get()
+    public function test_all_user_can_be_get(): void
     {
         $this->createUser(2);
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Components\Common\tests\Unit\Console\Commands;
+namespace App\Components\Common\tests\Console\Commands;
 
 use App\Components\Common\Helper\ComponentHelper;
-use App\Components\Common\tests\ComponentTestTrait;
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\Traits\ComponentTestTrait;
+use App\Components\Common\Testing\TestCase;
 
 /**
  * @group Common
@@ -14,7 +14,7 @@ class MakeRequestCommandTest extends TestCase
     use ComponentTestTrait;
 
     /** @test */
-    public function test_command_makes_component_if_not_exist()
+    public function test_command_makes_component_if_not_exist(): void
     {
         $countBefore = ComponentHelper::getCount();
         $this->makeRequest();
@@ -22,26 +22,29 @@ class MakeRequestCommandTest extends TestCase
         $countAfter = ComponentHelper::getCount();
         $this->deleteSampleComponent();
 
-        self::assertSame($countBefore + 1, $countAfter);
+        self::assertSame($countAfter, $countBefore + 1);
     }
 
     /** @test */
-    public function test_command_makes_request()
+    public function test_command_makes_request_and_test(): void
     {
-        $countBefore = ComponentHelper::getFilesByName($this->getSampleRequestName());
+        $countBefore = ComponentHelper::getFilesByName($this->sampleComponentName);
         $this->makeRequest();
 
         $componentFiles = $this->getComponentFiles($this->sampleComponentName);
 
-        $countAfter = ComponentHelper::getFilesByName($this->getSampleRequestName());
+        $countAfter = ComponentHelper::getFilesByName($this->sampleComponentName);
         $this->deleteSampleComponent();
 
-        self::assertSame([$this->getSampleRequestName()], $componentFiles);
-        self::assertSame(sizeof($countBefore) + 1, sizeof($countAfter));
+        self::assertSame([
+            $this->getSampleRequestName(),
+            $this->getSampleRequestName() . 'Test'
+        ], $componentFiles);
+        self::assertSame(sizeof($countAfter), sizeof($countBefore) + 2);
     }
 
     /** @test */
-    public function test_file_has_correct_path()
+    public function test_file_has_correct_path(): void
     {
         $this->makeRequest();
         $sampleFile = ComponentHelper::getFilesByName($this->getSampleRequestName());

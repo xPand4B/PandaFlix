@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Common\tests;
+namespace App\Components\Common\Testing\Traits;
 
 use App\Components\Common\Helper\ComponentHelper;
 use App\Components\Common\PandaFlix;
@@ -23,9 +23,10 @@ trait ComponentTestTrait
         'SampleResource',
         'SampleApiController',
         'SampleRequest',
-        'SampleApiControllerTest',
         'SampleRepositoryTest',
         'SampleCollectionTest',
+        'SampleResourceTest',
+        'SampleApiControllerTest',
         'SampleRequestTest',
     ];
 
@@ -64,9 +65,7 @@ trait ComponentTestTrait
     public function deleteSampleComponent(): void
     {
         File::deleteDirectory(
-            base_path(
-                PandaFlix::COMPONENT_PATH . DIRECTORY_SEPARATOR . $this->sampleComponentName
-            )
+            PandaFlix::ComponentPath() . DIRECTORY_SEPARATOR . $this->sampleComponentName
         );
     }
 }

@@ -61,11 +61,20 @@ class MakeRepositoryCommand extends GeneratorCommand
 
     /**
      * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function buildClass($name)
     {
         $this->call('make:model', [
             'name' => $this-> component,
+            'component' => $this->component
+        ]);
+
+        $this->call('make:test', [
+            'name' => 'Repositories/'.$this->argument('name').'Test',
             'component' => $this->component
         ]);
 

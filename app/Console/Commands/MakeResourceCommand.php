@@ -40,10 +40,19 @@ class MakeResourceCommand extends ResourceMakeCommand
 
     /**
      * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function buildClass($name)
     {
         $replace = $this->buildReplacements();
+
+        $this->call('make:test', [
+            'name' => 'Resources/'.$this->argument('name').'Test',
+            'component' => $this->component
+        ]);
 
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)

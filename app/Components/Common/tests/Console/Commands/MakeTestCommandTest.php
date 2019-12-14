@@ -1,35 +1,35 @@
 <?php
 
-namespace App\Components\Common\tests\Unit\Console\Commands;
+namespace App\Components\Common\tests\Console\Commands;
 
 use App\Components\Common\Helper\ComponentHelper;
-use App\Components\Common\tests\ComponentTestTrait;
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\Traits\ComponentTestTrait;
+use App\Components\Common\Testing\TestCase;
 
 /**
  * @group Common
  */
-class MakeUnitTestCommandTest extends TestCase
+class MakeTestCommandTest extends TestCase
 {
     use ComponentTestTrait;
 
     /** @test */
-    public function test_command_makes_component_if_not_exist()
+    public function test_command_makes_component_if_not_exist(): void
     {
         $countBefore = ComponentHelper::getCount();
-        $this->makeFeatureTest();
+        $this->makeTest();
 
         $countAfter = ComponentHelper::getCount();
         $this->deleteSampleComponent();
 
-        self::assertSame($countBefore + 1, $countAfter);
+        self::assertSame($countAfter, $countBefore + 1);
     }
 
     /** @test */
-    public function test_command_makes_unit_tests()
+    public function test_command_makes_unit_tests(): void
     {
         $countBefore = ComponentHelper::getFilesByName($this->getSampleUnitTestName());
-        $this->makeFeatureTest();
+        $this->makeTest();
 
         $componentFiles = $this->getComponentFiles($this->sampleComponentName);
 
@@ -37,18 +37,18 @@ class MakeUnitTestCommandTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertSame([$this->getSampleUnitTestName()], $componentFiles);
-        self::assertSame(sizeof($countBefore) + 1, sizeof($countAfter));
+        self::assertSame(sizeof($countAfter), sizeof($countBefore) + 1);
     }
 
     /** @test */
-    public function test_file_has_correct_path()
+    public function test_file_has_correct_path(): void
     {
-        $this->makeFeatureTest();
+        $this->makeTest();
         $sampleFile = ComponentHelper::getFilesByName($this->getSampleUnitTestName());
         $this->deleteSampleComponent();
 
         self::assertStringContainsString(
-            $this->sampleComponentName.DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR.'Unit'.DIRECTORY_SEPARATOR.$this->getSampleUnitTestName(),
+            $this->sampleComponentName.DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR.$this->getSampleUnitTestName(),
             $sampleFile[0]
         );
     }
@@ -56,12 +56,11 @@ class MakeUnitTestCommandTest extends TestCase
     /**
      * Runs the make:test command.
      */
-    private function makeFeatureTest(): void
+    private function makeTest(): void
     {
         $this->artisan('make:test', [
             'name' => $this->getSampleUnitTestName(),
-            'component' => $this->sampleComponentName,
-            '--unit' => 'default'
+            'component' => $this->sampleComponentName
         ]);
     }
 

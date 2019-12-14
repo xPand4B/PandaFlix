@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Components\User\tests;
+namespace App\Components\Common\Testing\Traits;
 
 use App\Components\User\Database\User;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Components\User\tests\Unit;
+namespace App\Components\User\tests\Resources;
 
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\TestCase;
 use App\Components\User\Database\User;
 use App\Components\User\Resources\UserCollection;
-use App\Components\User\tests\UserTestCaseTrait;
+use App\Components\Common\Testing\Traits\UserTestCaseTrait;
 
 /**
  * @group User
@@ -15,7 +15,7 @@ class UserCollectionTest extends TestCase
     use UserTestCaseTrait;
 
     /** @test */
-    public function test_collection_format()
+    public function test_collection_format(): void
     {
         $this->createUser(2);
         $users = User::all();

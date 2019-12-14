@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use App\Components\Common\tests\TestCase;
+use App\Components\Common\Testing\TestCase;
 
 /**
  * @group Dummy
@@ -10,4 +10,9 @@ use App\Components\Common\tests\TestCase;
 class DummyClass extends TestCase
 {
     // TODO: Add test
+    /** @test */
+    public function sample_test()
+    {
+        self::assertTrue(false);
+    }
 }

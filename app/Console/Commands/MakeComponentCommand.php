@@ -114,27 +114,27 @@ class MakeComponentCommand extends Command
         | Make default component tests
         |--------------------------------------------------------------------------
         */
-        $this->call('make:test', [
-            'name' => $componentName.'ApiControllerTest',
-            'component' => $componentName
-        ]);
-
-        $this->call('make:test', [
-            'name' => $componentName.'RepositoryTest',
-            'component' => $componentName
-        ]);
-
-        $this->call('make:test', [
-            'name' => $componentName.'CollectionTest',
-            'component' => $componentName,
-            '--unit' => 'default'
-        ]);
-
-        $this->call('make:test', [
-            'name' => $componentName.'RequestTest',
-            'component' => $componentName,
-            '--unit' => 'default'
-        ]);
+//        $this->call('make:test', [
+//            'name' => $componentName.'ApiControllerTest',
+//            'component' => $componentName
+//        ]);
+//
+//        $this->call('make:test', [
+//            'name' => $componentName.'RepositoryTest',
+//            'component' => $componentName
+//        ]);
+//
+//        $this->call('make:test', [
+//            'name' => $componentName.'CollectionTest',
+//            'component' => $componentName,
+//            '--unit' => 'default'
+//        ]);
+//
+//        $this->call('make:test', [
+//            'name' => $componentName.'RequestTest',
+//            'component' => $componentName,
+//            '--unit' => 'default'
+//        ]);
 
 //        $this->call('make:test', [
 //            'name' => $componentName.'ResourceTest',
