@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'xPand Netflix'),
+    'name' => env('APP_NAME', 'PandaFlix'),
 
     /*
     |--------------------------------------------------------------------------
