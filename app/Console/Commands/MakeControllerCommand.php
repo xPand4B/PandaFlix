@@ -83,6 +83,11 @@ class MakeControllerCommand extends ControllerMakeCommand
 
         $replace["use {$controllerNamespace}\Controller;\n"] = '';
 
+        $this->call('make:test', [
+            'name' => $this->argument('name').'Test',
+            'component' => $this->component
+        ]);
+
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
         );

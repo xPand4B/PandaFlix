@@ -3,6 +3,7 @@
 namespace App\Components\Common\Http\Controllers\Auth;
 
 use App\Components\Common\Http\Controllers\Controller;
+use App\Components\Common\PandaFlix;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -25,7 +26,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = PandaFlix::REDIRECT_TO_URL_AFTER_LOGIN;
 
     /**
      * Create a new controller instance.

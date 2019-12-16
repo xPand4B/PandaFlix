@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-I: php artisan clear-compiled
-I: php artisan cache:clear
-I: php artisan config:cache
+I: rm bootstrap/cache/*.php
+I: rm storage/debugbar/*.json
 I: php artisan optimize:clear
-I: php artisan route:clear
-I: php artisan view:clear

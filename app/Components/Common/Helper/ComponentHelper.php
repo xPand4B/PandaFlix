@@ -42,7 +42,7 @@ class ComponentHelper
      */
     private static function getComponentDirectories(): array
     {
-        $components = File::directories(base_path(PandaFlix::COMPONENT_PATH));
+        $components = File::directories(PandaFlix::ComponentPath());
 
         foreach ($components as $key => $component) {
             if (strpos($component, 'Common')) {
