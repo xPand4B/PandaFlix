@@ -1,6 +1,7 @@
 <?php
 
-use App\Components\User\Database\User;
+use App\Components\Common\Helper\ComponentHelper;
+use App\Components\Common\PandaFlix;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,15 +15,26 @@ class DatabaseSeeder extends Seeder
     {
         Eloquent::unguard();
 
-        $this->call([
-            UserSeeder::class
-        ]);
+        $this->call(PandaFlix::getComponentSeeders());
 
-        $usersCount  = User::all()->count();
+        $components = ComponentHelper::getComponentNames();
 
         $this->command->info("\nTotal:");
         $this->command->info("=============");
-        $this->command->info("User : {$usersCount}\n");
+
+        foreach ($components as $component) {
+            $splittedPath = explode(DIRECTORY_SEPARATOR, $component);
+            $componentName = $splittedPath[sizeof($splittedPath) - 1];
+            $modelClass = 'App\Components\\'.$componentName.'\Database\\'.$componentName;
+
+            if (!class_exists($modelClass)) {
+                continue;
+            }
+
+            $this->command->info("{$componentName}: " . $modelClass::all()->count());
+        }
+
+        $this->command->info('');
 
         Eloquent::reguard();
     }
