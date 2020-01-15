@@ -8,7 +8,8 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         executionOrder="random">
+         executionOrder="random"
+>
     <testsuites>
         <testsuite name="Test">
             <directory suffix="Test.php">./app/Components/**/tests</directory>

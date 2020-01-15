@@ -31,6 +31,7 @@ class UserFormRequestTest extends TestCase
         self::assertArrayHasKey('username', $this->rules);
         self::assertArrayHasKey('email', $this->rules);
         self::assertArrayHasKey('birthday', $this->rules);
+        self::assertArrayHasKey('password', $this->rules);
     }
 
     /** @test */
