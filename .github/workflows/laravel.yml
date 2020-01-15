@@ -18,7 +18,7 @@ jobs:
       run: chmod +x ./psh.phar
     - name: Run init script.
       run: ./psh.phar github:init
-    - name: Execute tests (Unit and Feature tests) via PHPUnit.
+    - name: Execute Unit-Tests via PHPUnit.
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: app/Components/Common/Database/database.sqlite

@@ -68,7 +68,7 @@ environments:
 
   github:
     templates:
-      - source: "dev-ops/dev/templates/.env.dist"
+      - source: "dev-ops/github/templates/.env.dist"
         destination: ".env"
     paths:
       - "dev-ops/github/actions"
