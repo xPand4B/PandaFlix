@@ -18,17 +18,30 @@ trait ComponentTestTrait
      */
     public $sampleComponentFiles = [
         'Sample',
-        'SampleRepository',
-        'SampleCollection',
-        'SampleResource',
+        'SampleFactory',
+        'SampleSeeder',
         'SampleApiController',
         'SampleRequest',
-        'SampleRepositoryTest',
-        'SampleCollectionTest',
-        'SampleResourceTest',
+        'SampleCollection',
+        'SampleResource',
+        'SampleRepository',
+        'SampleFactoryTest',
         'SampleApiControllerTest',
         'SampleRequestTest',
+        'SampleCollectionTest',
+        'SampleResourceTest',
+        'SampleRepositoryTest',
     ];
+
+    /**
+     * Returns the migration file name.
+     *
+     * @return string
+     */
+    public function getMigrationName(): string
+    {
+        return 'create_samples_table';
+    }
 
     /**
      * Returns the count of the specified filename.
@@ -42,7 +55,7 @@ trait ComponentTestTrait
     }
 
     /**
-     * Runs ComponentHelper and deletes the component.
+     * Runs ComponentHelper to get all files for the specified component.
      *
      * @param string $componentName
      * @return array

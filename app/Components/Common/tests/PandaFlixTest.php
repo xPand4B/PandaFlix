@@ -16,8 +16,7 @@ class PandaFlixTest extends TestCase
         $response = PandaFlix::ResourceAdditions();
 
         self::assertSame([
-            'version' => PandaFlix::VERSION,
-            'success' => (boolean)true
+            'version' => PandaFlix::VERSION
         ], $response);
     }
 

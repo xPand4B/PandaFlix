@@ -3,8 +3,10 @@
 namespace App\Components\Common\tests\Helper;
 
 use App\Components\Common\Helper\ComponentHelper;
+use App\Components\Common\PandaFlix;
 use App\Components\Common\Testing\Traits\ComponentTestTrait;
 use App\Components\Common\Testing\TestCase;
+use Illuminate\Support\Facades\File;
 
 /**
  * @group Common
@@ -44,6 +46,17 @@ class ComponentHelperTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertSame($countBefore + 1, $countAfter);
+    }
+
+    /** @test */
+    public function test_helper_can_get_all_component_names()
+    {
+        $expected = ComponentHelper::getComponentNames();
+
+        $actual = File::directories(PandaFlix::ComponentPath());
+
+        // Minus one because the helper is ignoring the Common component.
+        self::assertSame(sizeof($actual) - 1, sizeof($expected));
     }
 
     /** @test */
