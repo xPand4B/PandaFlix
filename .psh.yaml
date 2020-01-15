@@ -71,4 +71,4 @@ environments:
       - source: "dev-ops/dev/templates/.env.dist"
         destination: ".env"
     paths:
-      - "dev-ops/workflows/actions"
+      - "dev-ops/github/actions"
