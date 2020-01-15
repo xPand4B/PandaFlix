@@ -1,18 +1,39 @@
 <?php
 
-use App\Components\User\UserApiController;
+use App\Components\User\Http\Controllers\UserApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes - v1.0
+| API Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('v1')->group(function () {
+//Route::middleware('auth:api')->group(function()
+//{
+    $namePrefix = 'user';
+
     /*
     |--------------------------------------------------------------------------
-    | User Routes
+    | User routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('user', UserApiController::class);
-});
+    Route::get(
+        'users', [UserApiController::class, 'index']
+    )->name($namePrefix.'.index');
+
+    Route::post(
+        'users', [UserApiController::class, 'store']
+    )->name($namePrefix.'.store');
+
+    Route::get(
+        'users/{user}', [UserApiController::class, 'show']
+    )->name($namePrefix.'.show');
+
+    Route::match(['PUT', 'PATCH'],
+        'users/{user}', [UserApiController::class, 'update']
+    )->name($namePrefix.'.update');
+
+    Route::delete(
+        'users/{user}', [UserApiController::class, 'destroy']
+    )->name($namePrefix.'.destroy');
+//});

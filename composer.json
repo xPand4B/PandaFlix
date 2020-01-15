@@ -19,6 +19,7 @@
         "akaunting/language": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
+        "laravel/passport": "^8.0",
         "laravel/tinker": "^1.0",
         "waavi/sanitizer": "~1.0"
     },
@@ -47,13 +48,15 @@
         },
         "classmap": [
             "app/Components/Common/Database/factories",
-            "app/Components/Common/Database/seeds"
+            "app/Components/Common/Database/seeds",
+            "app/Components/User/Database/factories"
         ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": [
                 "app/Components/Common/tests",
+                "app/Components/Passport/tests",
                 "app/Components/User/tests"
             ]
         }
