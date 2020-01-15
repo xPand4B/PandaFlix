@@ -3,9 +3,9 @@
 namespace App\Components\User\tests\Repositories;
 
 use App\Components\Common\Testing\TestCase;
-use App\Components\Common\Testing\Traits\UserTestCaseTrait;
 use App\Components\User\Database\User;
 use App\Components\User\Repositories\UserRepository;
+use App\Components\User\tests\UserTestCaseTrait;
 
 /**
  * @group User

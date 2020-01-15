@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\User\Resources;
+namespace App\Components\User\Http\Resources;
 
 use Illuminate\Http\Request;
 use App\Components\Common\PandaFlix;

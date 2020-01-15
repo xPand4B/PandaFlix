@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Components\User\tests\Resources;
+namespace App\Components\User\tests\Http\Resources;
 
 use App\Components\Common\Testing\TestCase;
 use App\Components\User\Database\User;
-use App\Components\User\Resources\UserCollection;
-use App\Components\Common\Testing\Traits\UserTestCaseTrait;
+use App\Components\User\Http\Resources\UserCollection;
+use App\Components\User\tests\UserTestCaseTrait;
 
 /**
  * @group User

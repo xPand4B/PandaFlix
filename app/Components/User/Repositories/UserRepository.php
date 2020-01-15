@@ -3,9 +3,9 @@
 namespace App\Components\User\Repositories;
 
 use App\Components\User\Database\User;
-use App\Components\User\Resources\UserResource;
-use App\Components\User\Resources\UserCollection;
 use App\Components\Common\Contracts\RepositoryInterface;
+use App\Components\User\Http\Resources\UserCollection;
+use App\Components\User\Http\Resources\UserResource;
 
 class UserRepository implements RepositoryInterface
 {

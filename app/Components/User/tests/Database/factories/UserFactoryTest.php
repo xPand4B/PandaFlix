@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Components\Common\tests\Database\factories;
+namespace App\Components\User\tests\Database\factories;
 
 use App\Components\Common\Testing\TestCase;
 use App\Components\User\Database\User;
 
+/**
+ * @group User
+ */
 class UserFactoryTest extends TestCase
 {
     /** @test  */

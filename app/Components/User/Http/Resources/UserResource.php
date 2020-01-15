@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\User\Resources;
+namespace App\Components\User\Http\Resources;
 
 use App\Components\Common\PandaFlix;
 use App\Components\User\Database\User;
@@ -10,8 +10,11 @@ class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     *
+     * @param $request
+     * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         $this->with = PandaFlix::ResourceAdditions();
 
@@ -25,6 +28,7 @@ class UserResource extends JsonResource
                 'username' => $this->username,
                 'email' => $this->email,
                 'birthday' => $this->birthday,
+//                'api_token' => $this->api_token,
             ],
 
             // TODO: Add relationships

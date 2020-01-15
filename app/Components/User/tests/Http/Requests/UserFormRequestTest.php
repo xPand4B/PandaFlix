@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Components\User\tests;
+namespace App\Components\User\tests\Http\Requests;
 
 use App\Components\Common\Testing\TestCase;
 use App\Components\Common\Testing\Traits\RequestTestTrait;
-use App\Components\User\UserFormRequest;
+use App\Components\User\Http\Requests\UserFormRequest;
 
 /**
  * @group User
@@ -38,11 +38,11 @@ class UserFormRequestTest extends TestCase
     {
         self::assertEquals([
             'firstname' => 'required|alpha|min:1|max:255',
-            'lastname' => 'required|alpha|min:1|max:255',
-            'username' => 'required|alpha_num|unique:users|min:3|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'birthday' => 'nullable|date|',
-            'password' => 'password:api|required'
+            'lastname'  => 'required|alpha|min:1|max:255',
+            'username'  => 'required|alpha_num|unique:users|min:3|max:255',
+            'email'     => 'required|email|unique:users|max:255',
+            'birthday'  => 'nullable|date',
+            'password'  => 'required|confirmed|max:255'
         ], $this->rules);
     }
 

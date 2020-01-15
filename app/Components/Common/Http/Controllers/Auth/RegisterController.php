@@ -5,9 +5,11 @@ namespace App\Components\Common\Http\Controllers\Auth;
 use App\Components\Common\Http\Controllers\Controller;
 use App\Components\Common\PandaFlix;
 use App\Components\User\Database\User;
+use App\Components\User\Http\Requests\UserFormRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -49,12 +51,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // TODO: Add all user fields
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        return Validator::make(
+            $data, (new UserFormRequest())->rules()
+        );
     }
 
     /**
@@ -65,11 +64,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // TODO: Add all user fields
-        return User::create([
-            'name' => $data['name'],
+        return User::forceCreate([
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'api_token' => Str::random(80),
         ]);
     }
 }
