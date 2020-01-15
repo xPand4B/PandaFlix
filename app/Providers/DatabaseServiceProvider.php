@@ -2,27 +2,13 @@
 
 namespace App\Providers;
 
+use App\Components\Common\PandaFlix;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 use Faker\Generator as FakerGenerator;
 
 class DatabaseServiceProvider extends ServiceProvider
 {
-    /**
-     * @var string
-     */
-    public $database_path = 'app/Components/Common/Database';
-
-    /**
-     * @var string
-     */
-    public $factories_path = 'app/Components/Common/Database/factories';
-
-    /**
-     * @var string
-     */
-    public $migrations_path = 'app/Components/Common/Database/migrations';
-
     /**
      * Register any application services.
      *
@@ -32,7 +18,10 @@ class DatabaseServiceProvider extends ServiceProvider
     {
         $this->app->singleton(EloquentFactory::class, function ($app) {
             $faker = $app->make(FakerGenerator::class);
-            return EloquentFactory::construct($faker, base_path($this->factories_path));
+            return EloquentFactory::construct(
+                $faker,
+                PandaFlix::ComponentPath('User/' . config('pandaflix.path.factories'))
+            );
         });
     }
 
@@ -43,8 +32,10 @@ class DatabaseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->databasePath(base_path($this->database_path));
+        $this->app->databasePath(
+            PandaFlix::ComponentPath('Common/' . config('pandaflix.path.database'))
+        );
 
-        $this->loadMigrationsFrom(base_path($this->migrations_path));
+        $this->loadMigrationsFrom(PandaFlix::getMigrationDirectories());
     }
 }

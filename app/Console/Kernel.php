@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Components\Common\PandaFlix;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -37,6 +38,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__ . '/Commands');
 
-        require base_path('routes/console.php');
+        require PandaFlix::ComponentPath('Common/routes/console.php');
     }
 }

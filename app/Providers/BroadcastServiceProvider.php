@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Components\Common\PandaFlix;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +17,6 @@ class BroadcastServiceProvider extends ServiceProvider
     {
         Broadcast::routes();
 
-        require base_path('routes/channels.php');
+        require PandaFlix::ComponentPath('Common/routes/channels.php');
     }
 }
