@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Foundation\Console\ModelMakeCommand;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 
 class MakeModelCommand extends ModelMakeCommand
@@ -38,6 +39,42 @@ class MakeModelCommand extends ModelMakeCommand
         }
 
         return __DIR__ . '/stubs/model.stub';
+    }
+
+    /**
+     * Create a model factory for the model.
+     *
+     * @return void
+     */
+    protected function createFactory()
+    {
+        $factory = Str::studly(class_basename($this->argument('name')));
+
+        $this->call('make:factory', [
+            'name' => "{$factory}Factory",
+            'component' => $this->component,
+            '--model' => $this->qualifyClass($this->getNameInput()),
+        ]);
+    }
+
+    /**
+     * Create a migration file for the model.
+     *
+     * @return void
+     */
+    protected function createMigration()
+    {
+        $table = Str::snake(Str::pluralStudly(class_basename($this->argument('name'))));
+
+        if ($this->option('pivot')) {
+            $table = Str::singular($table);
+        }
+
+        $this->call('make:migration', [
+            'name' => "create_{$table}_table",
+            'component' => $this->component,
+            '--create' => $table,
+        ]);
     }
 
     /**

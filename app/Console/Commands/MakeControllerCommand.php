@@ -54,7 +54,7 @@ class MakeControllerCommand extends ControllerMakeCommand
         $this->component = strtolower($this->argument('component'));
         $this->component = ucfirst($this->component);
 
-        return $rootNamespace.'\Components\\'.$this->component;
+        return $rootNamespace.'\Components\\'.$this->component.'\Http\Controllers';
     }
 
     /**
@@ -67,7 +67,7 @@ class MakeControllerCommand extends ControllerMakeCommand
      */
     protected function buildClass($name)
     {
-        $controllerNamespace = 'App\\Components\\'.$this->component;
+        $controllerNamespace = 'App\\Components\\'.$this->component.'\\Http\\Controllers';
 
         $replace = [];
 
@@ -84,7 +84,7 @@ class MakeControllerCommand extends ControllerMakeCommand
         $replace["use {$controllerNamespace}\Controller;\n"] = '';
 
         $this->call('make:test', [
-            'name' => $this->argument('name').'Test',
+            'name' => 'Http/Controllers/'.$this->argument('name').'Test',
             'component' => $this->component
         ]);
 

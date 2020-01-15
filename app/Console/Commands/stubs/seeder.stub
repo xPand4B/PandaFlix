@@ -1,0 +1,19 @@
+<?php
+
+namespace SeederNamespace;
+
+use App\Components\DummyModel\Database\DummyModel;
+use Illuminate\Database\Seeder;
+
+class DummyClass extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(DummyModel::class, DummyModel::$seed_count)->create();
+    }
+}

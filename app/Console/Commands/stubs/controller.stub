@@ -20,6 +20,7 @@ class DummyClass extends Controller
      */
     public function __construct(DummyModelClassRepository $DummyModelVariable)
     {
+        parent::__construct();
         $this->DummyModelVariableRepository = $DummyModelVariable;
     }
 

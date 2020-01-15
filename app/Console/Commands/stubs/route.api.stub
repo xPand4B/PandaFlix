@@ -1,18 +1,39 @@
 <?php
 
-use App\Components\DummyComponent\DummyComponentApiController;
+use App\Components\DummyComponent\Http\Controllers\DummyComponentApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes - v1.0
+| Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('v1')->group(function () {
+Route::middleware('auth:api')->group(function()
+{
+    $namePrefix = 'user';
+
     /*
     |--------------------------------------------------------------------------
     | DummyComponent Routes
     |--------------------------------------------------------------------------
     */
-    Route::apiResource('DummyRoute', DummyComponentApiController::class);
+    Route::get(
+            'DummyRoute', [DummyComponentApiController::class, 'index']
+        )->name($namePrefix.'.index');
+
+    Route::post(
+        'DummyRoute', [DummyComponentApiController::class, 'store']
+    )->name($namePrefix.'.store');
+
+    Route::get(
+        'DummyRoute/{DummyModel}', [DummyComponentApiController::class, 'show']
+    )->name($namePrefix.'.show');
+
+    Route::match(['PUT', 'PATCH'],
+        'DummyRoute/{DummyModel}', [DummyComponentApiController::class, 'update']
+    )->name($namePrefix.'.update');
+
+    Route::delete(
+        'DummyRoute/{DummyModel}', [DummyComponentApiController::class, 'destroy']
+    )->name($namePrefix.'.destroy');
 });

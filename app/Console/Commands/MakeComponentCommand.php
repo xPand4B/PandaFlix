@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Components\Common\PandaFlix;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class MakeComponentCommand extends Command
 {
@@ -31,6 +33,8 @@ class MakeComponentCommand extends Command
     }
 
     /**
+     * TODO: Refactor path variables.
+     *
      * Execute the console command.
      *
      * @return mixed
@@ -44,10 +48,57 @@ class MakeComponentCommand extends Command
         | Make default repository
         |--------------------------------------------------------------------------
         */
-        $this->call('make:repository', [
-            'name' => $componentName.'Repository',
+        $this->call('make:model', [
+            'name' => $componentName,
+            'component' => $componentName,
+            '--factory' => 'default',
+            '--migration' => 'default'
+        ]);
+        $this->createGitKeepFile($componentName.'/Database/factories');
+        $this->createGitKeepFile($componentName.'/Database/migrations');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Make default seeder
+        |--------------------------------------------------------------------------
+        */
+        $this->call('make:seeder', [
+            'name' => $componentName.'Seeder',
             'component' => $componentName
         ]);
+        $this->createGitKeepFile($componentName.'/Database/seeds');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Make default api controller
+        |--------------------------------------------------------------------------
+        */
+        $this->call('make:controller', [
+            'name' => $componentName.'ApiController',
+            'component' => $componentName,
+            '--api' => 'default'
+        ]);
+        $this->createGitKeepFile($componentName.'/Http/Controllers');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Make default Middleware directory
+        |--------------------------------------------------------------------------
+        */
+        $middlewareDirectory = $componentName.'/Http/Middleware';
+        $this->createDirectory($middlewareDirectory);
+        $this->createGitKeepFile($middlewareDirectory);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Make default request
+        |--------------------------------------------------------------------------
+        */
+        $this->call('make:request', [
+            'name' => $componentName.'Request',
+            'component' => $componentName
+        ]);
+        $this->createGitKeepFile($componentName.'/Http/Requests');
 
         /*
         |--------------------------------------------------------------------------
@@ -69,27 +120,18 @@ class MakeComponentCommand extends Command
             'name' => $componentName.'Resource',
             'component' => $componentName
         ]);
+        $this->createGitKeepFile($componentName.'/Http/Resources');
 
         /*
         |--------------------------------------------------------------------------
-        | Make default api controller
+        | Make default repository
         |--------------------------------------------------------------------------
         */
-        $this->call('make:controller', [
-            'name' => $componentName.'ApiController',
-            'component' => $componentName,
-            '--api' => 'default'
-        ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Make default request
-        |--------------------------------------------------------------------------
-        */
-        $this->call('make:request', [
-            'name' => $componentName.'Request',
+        $this->call('make:repository', [
+            'name' => $componentName.'Repository',
             'component' => $componentName
         ]);
+        $this->createGitKeepFile($componentName.'/Repositories');
 
         /*
         |--------------------------------------------------------------------------
@@ -108,40 +150,30 @@ class MakeComponentCommand extends Command
         $this->call('add:web-routes', [
             'component' => $componentName,
         ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Make default component tests
-        |--------------------------------------------------------------------------
-        */
-//        $this->call('make:test', [
-//            'name' => $componentName.'ApiControllerTest',
-//            'component' => $componentName
-//        ]);
-//
-//        $this->call('make:test', [
-//            'name' => $componentName.'RepositoryTest',
-//            'component' => $componentName
-//        ]);
-//
-//        $this->call('make:test', [
-//            'name' => $componentName.'CollectionTest',
-//            'component' => $componentName,
-//            '--unit' => 'default'
-//        ]);
-//
-//        $this->call('make:test', [
-//            'name' => $componentName.'RequestTest',
-//            'component' => $componentName,
-//            '--unit' => 'default'
-//        ]);
-
-//        $this->call('make:test', [
-//            'name' => $componentName.'ResourceTest',
-//            'component' => $componentName,
-//            '--unit' => 'default'
-//        ]);
+        $this->createGitKeepFile($componentName.'/Routes');
 
         return;
+    }
+
+    /**
+     * Creates a new directory.
+     *
+     * @param string $directory
+     */
+    private function createDirectory(string $directory): void
+    {
+        $path = PandaFlix::ComponentPath($directory);
+        File::makeDirectory($path);
+    }
+
+    /**
+     * Creates an empty .gitkeep file.
+     *
+     * @param string $directory
+     */
+    private function createGitKeepFile(string $directory): void
+    {
+        $path = PandaFlix::ComponentPath($directory.DIRECTORY_SEPARATOR.'.gitkeep');
+        \touch($path);
     }
 }

@@ -51,7 +51,7 @@ class MakeResourceCommandTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertStringContainsString(
-            $this->sampleComponentName.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.$this->getSampleResourceName(),
+            $this->sampleComponentName.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.$this->getSampleResourceName(),
             $sampleFile[0]
         );
     }

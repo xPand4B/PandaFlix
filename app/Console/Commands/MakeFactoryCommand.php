@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Foundation\Console\RequestMakeCommand;
+use App\Components\Common\PandaFlix;
+use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MakeRequestCommand extends RequestMakeCommand
+class MakeFactoryCommand extends FactoryMakeCommand
 {
     /**
      * @var string
@@ -13,17 +14,18 @@ class MakeRequestCommand extends RequestMakeCommand
     private $component;
 
     /**
-     * Get the default namespace for the class.
+     * Execute the console command.
      *
-     * @param  string  $rootNamespace
-     * @return string
+     * @return bool|null
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    protected function getDefaultNamespace($rootNamespace)
+    public function handle()
     {
         $this->component = strtolower($this->argument('component'));
         $this->component = ucfirst($this->component);
 
-        return $rootNamespace.'\Components\\'.$this->component.'\Http\Requests';
+        return parent::handle();
     }
 
     /**
@@ -31,16 +33,32 @@ class MakeRequestCommand extends RequestMakeCommand
      *
      * @param  string  $name
      * @return string
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function buildClass($name)
     {
         $this->call('make:test', [
-            'name' => 'Http/Requests/'.$this->argument('name').'Test',
+            'name' => 'Database/'.$this->argument('name').'Test',
             'component' => $this->component
         ]);
 
         return parent::buildClass($name);
+    }
+
+    /**
+     * Get the destination class path.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function getPath($name)
+    {
+        $name = str_replace(
+            ['\\', '/'], '', $this->argument('name')
+        );
+
+        return PandaFlix::ComponentPath(
+            $this->component.'/'.config('pandaflix.path.factories').'/'.$name.'.php'
+        );
     }
 
     /**

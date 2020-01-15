@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Foundation\Console\ResourceMakeCommand;
+use App\Components\Common\PandaFlix;
+use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MakeResourceCommand extends ResourceMakeCommand
+class MakeSeederCommand extends SeederMakeCommand
 {
     /**
      * @var string
@@ -13,17 +14,16 @@ class MakeResourceCommand extends ResourceMakeCommand
     private $component;
 
     /**
-     * Get the default namespace for the class.
+     * Execute the console command.
      *
-     * @param  string  $rootNamespace
-     * @return string
+     * @return void
      */
-    protected function getDefaultNamespace($rootNamespace)
+    public function handle()
     {
         $this->component = strtolower($this->argument('component'));
         $this->component = ucfirst($this->component);
 
-        return $rootNamespace.'\Components\\'.$this->component.'\\Http\Resources';
+        parent::handle();
     }
 
     /**
@@ -33,26 +33,29 @@ class MakeResourceCommand extends ResourceMakeCommand
      */
     protected function getStub()
     {
-        return $this->collection()
-            ? __DIR__ . '/stubs/resource-collection.stub'
-            : __DIR__.'/stubs/resource.stub';
+        return __DIR__.'/stubs/seeder.stub';
     }
 
     /**
-     * Build the class with the given name.
+     * Get the destination class path.
      *
      * @param  string  $name
      * @return string
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+    protected function getPath($name)
+    {
+        $name = str_replace(
+            ['\\', '/'], '', $this->argument('name')
+        );
+
+        return PandaFlix::ComponentPath(
+            $this->component.'/'.config('pandaflix.path.seeds').'/'.$name.'.php'
+        );
+    }
+
     protected function buildClass($name)
     {
         $replace = $this->buildReplacements();
-
-        $this->call('make:test', [
-            'name' => 'Http/Resources/'.$this->argument('name').'Test',
-            'component' => $this->component
-        ]);
 
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
@@ -67,7 +70,8 @@ class MakeResourceCommand extends ResourceMakeCommand
     protected function buildReplacements()
     {
         return [
-            'DummyComponent' => $this->component
+            'SeederNamespace' => 'App\Components\\'.$this->component.'\\Database\Seeds',
+            'DummyModel' => $this->component
         ];
     }
 

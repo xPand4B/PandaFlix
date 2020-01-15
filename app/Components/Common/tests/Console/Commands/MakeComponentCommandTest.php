@@ -3,8 +3,10 @@
 namespace App\Components\Common\tests\Console\Commands;
 
 use App\Components\Common\Helper\ComponentHelper;
+use App\Components\Common\PandaFlix;
 use App\Components\Common\Testing\Traits\ComponentTestTrait;
 use App\Components\Common\Testing\TestCase;
+use Illuminate\Support\Facades\File;
 
 /**
  * @group Common
@@ -32,11 +34,17 @@ class MakeComponentCommandTest extends TestCase
 
         $files = $this->getComponentFiles($this->sampleComponentName);
 
+        $sampleMigration = File::allFiles(
+            PandaFlix::ComponentPath($this->sampleComponentName.'/'.config('pandaflix.path.migrations'))
+        )[0]->getFilenameWithoutExtension();
+
+        $this->deleteSampleComponent();
+
         for ($i = 0; $i < sizeof($files); $i++) {
             self::assertSame($this->sampleComponentFiles[$i], $files[$i]);
         }
 
-        $this->deleteSampleComponent();
+        self::assertStringContainsString($this->getMigrationName(), $sampleMigration);
     }
 
     /** @test */

@@ -51,7 +51,7 @@ class MakeControllerCommandTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertStringContainsString(
-            $this->sampleComponentName.DIRECTORY_SEPARATOR.$this->getSampleControllerName(),
+            $this->sampleComponentName.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Controllers'.DIRECTORY_SEPARATOR.$this->getSampleControllerName(),
             $sampleFile[0]
         );
     }

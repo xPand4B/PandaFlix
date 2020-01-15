@@ -2,10 +2,10 @@
 
 namespace DummyNamespace;
 
-use App\Components\Common\Concerns\PandaFlixModel;
-use App\Components\Common\Concerns\UsesUuid;
+use App\Components\Common\Traits\UsesUuid;
+use Illuminate\Database\Eloquent\Model;
 
-class DummyClass extends PandaFlixModel
+class DummyClass extends Model
 {
     use UsesUuid;
 

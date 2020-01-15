@@ -90,6 +90,7 @@ class AddApiRoutesCommand extends GeneratorCommand
         return [
             'DummyComponent' => $this->component,
             'DummyRoute' => strtolower($this->component),
+            'DummyModel' => ucfirst(strtolower($this->component)),
         ];
     }
 

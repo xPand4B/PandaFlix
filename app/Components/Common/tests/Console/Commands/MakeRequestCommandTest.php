@@ -51,7 +51,7 @@ class MakeRequestCommandTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertStringContainsString(
-            $this->sampleComponentName.DIRECTORY_SEPARATOR.$this->getSampleRequestName(),
+            $this->sampleComponentName.DIRECTORY_SEPARATOR.'Http'.DIRECTORY_SEPARATOR.'Requests'.DIRECTORY_SEPARATOR.$this->getSampleRequestName(),
             $sampleFile[0]
         );
     }

@@ -37,11 +37,10 @@ class MakeRepositoryCommandTest extends TestCase
         $this->deleteSampleComponent();
 
         self::assertSame([
-            $this->sampleComponentName,
             $this->getSampleRepositoryName(),
             $this->getSampleRepositoryName() . 'Test'
         ], $componentFiles);
-        self::assertSame(sizeof($countAfter), sizeof($countBefore) + 3);
+        self::assertSame(sizeof($countAfter), sizeof($countBefore) + 2);
     }
 
     /** @test */

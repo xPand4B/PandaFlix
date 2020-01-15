@@ -68,11 +68,6 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function buildClass($name)
     {
-        $this->call('make:model', [
-            'name' => $this-> component,
-            'component' => $this->component
-        ]);
-
         $this->call('make:test', [
             'name' => 'Repositories/'.$this->argument('name').'Test',
             'component' => $this->component
