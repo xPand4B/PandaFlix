@@ -25,6 +25,8 @@ class ComponentHelperTest extends TestCase
         for ($i = 0; $i < sizeof($files); $i++) {
             self::assertSame($files[$i], $this->sampleComponentFiles[$i]);
         }
+
+        $this->deleteSampleComponent();
     }
 
     /** @test */

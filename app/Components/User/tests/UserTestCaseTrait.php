@@ -4,6 +4,9 @@ namespace App\Components\User\tests;
 
 use App\Components\User\Database\User;
 
+/**
+ * @group User
+ */
 trait UserTestCaseTrait
 {
     /**

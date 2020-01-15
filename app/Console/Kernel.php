@@ -38,6 +38,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__ . '/Commands');
 
-        require PandaFlix::ComponentPath('Common/routes/console.php');
+        require PandaFlix::ComponentPath('Common/Routes/console.php');
     }
 }
